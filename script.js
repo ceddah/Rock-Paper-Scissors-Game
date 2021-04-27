@@ -1,4 +1,4 @@
-// DOM
+// DOM Elements
 const playBtn = document.querySelector('.game-start');
 const screens = document.querySelectorAll('.screen');
 const playerOptionBtns = document.querySelectorAll('.choose-RPS');
@@ -6,7 +6,7 @@ const playerScoreEl = document.querySelector('.player-score');
 const computerScoreEl = document.querySelector('.computer-score');
 const choicesEl = document.querySelector('.choices')
 
-//Keeping track of both scores...
+//Keeping track of both scores and choices...
 let playerChoose;
 let computerChoose;
 let playerScore = 0;
@@ -18,12 +18,7 @@ playBtn.addEventListener('click', () => {
     screens[0].classList.add('up');
 })
 
-//MAKE SURE THAT WE CANT GET TIED........
-//MAKE SURE THAT WE CANT GET TIED........
-//MAKE SURE THAT WE CANT GET TIED........
-//MAKE SURE THAT WE CANT GET TIED........
-//MAKE SURE THAT WE CANT GET TIED........
-
+//Event Capturing
 screens[1].addEventListener('click', (e) => {
     if(e.target.classList.contains('choose-RPS')) {
         playerOption(e)
@@ -31,20 +26,19 @@ screens[1].addEventListener('click', (e) => {
 })
 
 //Functions
-function computerPlay() {
+function computerOption() {
+    //Every time we call this function computerChoose variable will be updated
     computerChoose = options[Math.floor(Math.random() * 3)];
-    if(computerChoose == playerChoose) {
-        return computerPlay();
-    }
 }
 
 function playerOption(e) {
-    computerPlay();
+    computerOption();
     playerChoose = e.target.querySelector('p').innerText.toLowerCase();
+    //Getting both player's choice and computer's choice and forwarding it to showResults function
     showResults(computerChoose, playerChoose);
 }
 
-
+//This function is there to create back all elements after every round. Because we will remove them.
 function createElements() {
     const images = ['./assets/60 Rock.png', './assets/60 Paper.png', './assets/60 Scissors.png'];
     images.forEach((img, idx) => {
@@ -65,20 +59,21 @@ function createElements() {
 
 
 function showResults(computerSelection, playerSelection) {
-    console.log(computerSelection, playerSelection);
-    const computerDiv = [...playerOptionBtns].filter(div => {
-        const value = div.querySelector('p').innerText.toLowerCase();
-        if(value === computerSelection) return div;
+    //We are filtering all the buttons and getting back button which has same value as computer's choice
+    const computerDiv = [...playerOptionBtns].filter(btn => {
+        const value = btn.querySelector('p').innerText.toLowerCase();
+        if(value === computerSelection) return btn;
     })
 
-    const playerDiv = [...playerOptionBtns].filter(div => {
-        const value = div.querySelector('p').innerText.toLowerCase();
-        if(value === playerSelection) return div
+    const playerDiv = [...playerOptionBtns].filter(btn => {
+        const value = btn.querySelector('p').innerText.toLowerCase();
+        if(value === playerSelection) return btn
     })
 
     //Now we will delete all choices and show both options and conclude winner.
     choicesEl.innerHTML = '';
 
+    //In case it was a tie, we need to create 2 buttons that have same values.
     if(computerSelection === playerSelection) {
         const playerDivEl = document.createElement('li');
         playerDivEl.appendChild(playerDiv[0])
@@ -92,9 +87,6 @@ function showResults(computerSelection, playerSelection) {
         messageEl.appendChild(message);
         choicesEl.appendChild(messageEl);
 
-        //Original code only had else statement and I expeted to insert both Divs in, but since I only had
-        //a reference to a player Choice DIV and Computer Choice DIV, if we got tied then code would break
-        //because i couldn't insert same div in two places, so i made new DIV that has same stats as fist one.
         const computerDivEl = document.createElement('li');
         const tiedDiv = document.createElement('button');
         tiedDiv.setAttribute('class', 'choose-RPS');
@@ -108,6 +100,7 @@ function showResults(computerSelection, playerSelection) {
         choicesEl.appendChild(computerDivEl);
 
     } else {
+        //Creating li and appending player's choice that we saved in playerDiv array.
         const playerDivEl = document.createElement('li');
         playerDivEl.appendChild(playerDiv[0])
         choicesEl.appendChild(playerDivEl);
@@ -120,6 +113,7 @@ function showResults(computerSelection, playerSelection) {
         messageEl.appendChild(message);
         choicesEl.appendChild(messageEl);
 
+        //Creating li and appending player's choice that we saved in computerDiv array.
         const computerDivEl = document.createElement('li');
         computerDivEl.appendChild(computerDiv[0]);
         choicesEl.appendChild(computerDivEl);
@@ -128,18 +122,20 @@ function showResults(computerSelection, playerSelection) {
         increaseScore(result);
     }
 
-    //Playing Again after round is over.
+    //Playing Again after round is over, and after choice is made we forbid player to press any of the choices
+    //until new round is started.
     screens[1].classList.add('between-rounds');
     setTimeout(() => {
         choicesEl.querySelectorAll('li').forEach(li => choicesEl.removeChild(li));
         createElements();
-        //remove user-select
+        //returning pointer events
         screens[1].classList.remove('between-rounds');
-    }, 5000)
+    }, 3000)
 
     
 }
 
+//Passing this function both choices, and through nested if statements we conclude the winner.
 function decideWinner(computer, player) {
     let result;
     if(computer === 'rock') {
@@ -170,6 +166,7 @@ function decideWinner(computer, player) {
     return result;
 }
 
+//We are passing in the result and and increasing the score based on who won.
 function increaseScore(result) {
     if(result == 'You Lost.') {
         computerScore++;
@@ -181,6 +178,7 @@ function increaseScore(result) {
     }
     playerScoreEl.innerHTML = `Player: ${playerScore}`;
     computerScoreEl.innerHTML = `Computer: ${computerScore}`;
+    //Whenever player's or computer's score gets to 5 we cann gameOverScreen function with winner as a parameter.
     if(computerScore === 5)  {
         gameOverScreen('Computer');
     }else if(playerScore === 5) {
@@ -188,8 +186,8 @@ function increaseScore(result) {
     }
 }
 
+//Based on who won, we are showing different game over screen.
 function gameOverScreen(winner) {
-    screens[1].classList.remove('between-rounds');
     if(winner === 'Computer') {
         screens[1].innerHTML = `
         <div class="title">
