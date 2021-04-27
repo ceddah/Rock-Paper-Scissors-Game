@@ -20,16 +20,21 @@ body {
 .screen {
     height: 101vh;
     transition: margin 0.5s ease-out;
-}
-
-/* Styling Welcome Screen */
-.screen.rules {
     display: flex;
     align-items: center;
     /* justify-content: center; */
     flex-direction: column;
-    margin-top: 5rem;
+    margin-top: 7rem;
 }
+
+/* Styling Welcome Screen */
+
+/* .screen.rules {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 5rem;
+} */
 
 .screen.rules .title h4 {
     font-size: 1rem;
@@ -74,5 +79,63 @@ body {
 
 /* Styling Game Container */
 .screen.game-div {
-
+    margin: 0;
+    justify-content: center;
 }
+
+.screen.game-div .choices {
+    display: flex;
+    margin: 5rem 0;
+    list-style-type: none;
+}
+
+.screen.game-div .choices li {
+    margin: 0 10px;
+}
+
+.screen.game-div .choices .choose-RPS {
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    cursor: pointer;
+    font-family: inherit;
+    width: 150px;
+    height: 150px;
+}
+
+.screen.game-div .choices .choose-RPS img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-top: 0.5rem;
+}
+
+.screen.game-div .choices .choose-RPS:hover {
+    background-color: #fff;
+    color: #516DFF;
+}
+
+.screen.game-div .choices .choose-RPS:active {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.screen.game-div .choices .choose-RPS:focus {
+    outline: none;
+}
+
+.screen.game-div .results {
+    width: 490px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+}
+
+.screen.game-div .results .player-score {
+    color: #40E0D0; 
+}
+
+.screen.game-div .results .computer-score {
+    color:  #DE3163;
+}
+
