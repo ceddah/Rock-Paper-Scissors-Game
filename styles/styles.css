@@ -103,11 +103,16 @@ body {
     height: 150px;
 }
 
+.screen.game-div .choices .choose-RPS p {
+    user-select: none;
+}
+
 .screen.game-div .choices .choose-RPS img {
     width: 100px;
     height: 100px;
     object-fit: cover;
     margin-top: 0.5rem;
+    pointer-events: none;
 }
 
 .screen.game-div .choices .choose-RPS:hover {
