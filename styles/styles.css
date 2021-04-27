@@ -69,11 +69,15 @@ body {
     cursor: pointer;
 }
 
+.screen.rules .instruction {
+    line-height: 40px;
+}
+
 .screen.rules .game-start:hover {
     opacity: 0.9;
 }
 
-.screen.up {
+.screen.rules.up {
     margin-top: -100vh;
 }
 
@@ -83,9 +87,22 @@ body {
     justify-content: center;
 }
 
+.screen.game-div h2.you-lost {
+    color: #DE3163;
+}
+
+.screen.game-div h2.you-won {
+    color: #40E0D0; 
+}
+
+.screen.game-div.between-rounds {
+    pointer-events: none;
+}
+
 .screen.game-div .choices {
     display: flex;
     margin: 5rem 0;
+    align-items: center;
     list-style-type: none;
 }
 
@@ -142,5 +159,15 @@ body {
 
 .screen.game-div .results .computer-score {
     color:  #DE3163;
+}
+
+.screen.game-div .game-over {
+    padding: 15px 20px;
+    color: #516DFF;
+    background-color: #fff;
+    border: none;
+    font-family: inherit;
+    margin-top: 5rem;
+    cursor: pointer;
 }
 
