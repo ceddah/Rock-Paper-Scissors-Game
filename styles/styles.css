@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,300&display=swap'); */
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Press Start 2P', sans-serif;
+    height: 100vh;
+    background-color: #516DFF;
+    color: #fff;
+    overflow: hidden;
+    text-align: center;
+}
+
+.screen {
+    height: 101vh;
+    transition: margin 0.5s ease-out;
+}
+
+/* Styling Welcome Screen */
+.screen.rules {
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    flex-direction: column;
+    margin-top: 5rem;
+}
+
+.screen.rules .title h4 {
+    font-size: 1rem;
+}
+
+.screen.rules .title h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 3rem;
+}
+
+.screen.rules .rules-img {
+    width: 250px;
+    height: 250px;
+    /* border: 1px solid #fff; */
+    margin: 3rem 0;
+}
+
+.screen.rules .rules-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.screen.rules .game-start {
+    padding: 15px 20px;
+    color: #516DFF;
+    background-color: #fff;
+    border: none;
+    font-family: inherit;
+    margin-top: 3rem;
+    cursor: pointer;
+}
+
+.screen.rules .game-start:hover {
+    opacity: 0.9;
+}
+
+.screen.up {
+    margin-top: -100vh;
+}
+
+/* Styling Game Container */
+.screen.game-div {
+
+}

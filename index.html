@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>Rock Paper Scissors Game</title>
+</head>
+<body>
+    <!-- This is the first screen that player sees upon entering the game... -->
+    <div class="screen rules up">
+        <div class="title">
+            <h4>Welcome to</h4>
+            <h2>Rock &#8226 Paper &#8226 Scissors Game</h2>
+        </div>
+        <div class="rules-img">
+            <img src="./assets/diagram.png" alt="RSP Rules">
+        </div>
+        <small class="instruction">
+            If you understand the rules, press Play.
+        </small>
+        <button class="game-start">Play Game!</button>
+    </div>
+
+    <!-- On this screen player can choose what to play -->
+    <div class="screen game-div">
+        <div class="title">
+            <h2>What will be your choice?</h2>
+        </div>
+        <ul class="choices">
+            <li>
+                <button class="choose-RPS">
+                    <p>Rock</p>
+                    <img src="#" alt="Rock">
+                </button>
+            </li>
+            <li>
+                <button class="choose-RPS">
+                    <p>Paper</p>
+                    <img src="#" alt="Paper">
+                </button>
+            </li>
+            <li>
+                <button class="choose-RPS">
+                    <p>Scissors</p>
+                    <img src="#" alt="Scissors">
+                </button>
+            </li>
+        </ul>
+
+        <div class="result-element">
+            <div class="player-chose"></div>
+            <div class="computer-chose"></div>
+            <h4>Player/Computer won!</h4>
+            <span class="score">0</span>
+        </div>
+    </div>
+
+    <!-- This is where the result will be shown after playing -->
+    <!-- <div class="screen game-result">
+        <div class="title">
+            <h2>And the winner is...</h2>
+            <div class="result-element">
+                <div class="player-chose"></div>
+                <div class="computer-chose"></div>
+            </div>
+        </div>
+    </div> -->
+    
+
+    <script src="script.js"></script>
+</body>
+</html>
